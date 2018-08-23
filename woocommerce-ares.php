@@ -4,11 +4,13 @@
  Author:            Milan Švehla
  Author URI:        https://milansvehla.com
  Text Domain:       woocommerce-ares
- Version:           0.0.1
+ Domain Path:       /languages
+ Description:       Přidává do WooCommerce pokladny údaje pro firemní zákazníky a umožňuje natažení informací podle IČO.
+ Version:           1.0.0
  License:           GPLv3
  License URI:       http://www.gnu.org/licenses/gpl-3.0.html
- License: GNU General Public License v3.0
- License URI: http://www.gnu.org/licenses/gpl-3.0.html
+ License:           GNU General Public License v3.0
+ License URI:       http://www.gnu.org/licenses/gpl-3.0.html
  */
 
 // If this file is called directly, abort.
@@ -17,11 +19,12 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 define( 'WOOCOMMERCE_ARES_URL', plugin_dir_url( __FILE__ ) );
-define( 'WOOCOMMERCE_ARES_VERSION', "0.0.1" );
+define( 'WOOCOMMERCE_ARES_VERSION', "1.0.0" );
 
-add_filter( 'woocommerce_billing_fields' , 'custom_override_checkout_fields' );
+add_filter( 'woocommerce_billing_fields' , 'woocommerce_ares_override_checkout_fields' );
 
-function custom_override_checkout_fields( $fields ) {
+
+function woocommerce_ares_override_checkout_fields( $fields ) {
 	$fields["ares_is_company"] = [
      	"type" => "checkbox",
      	"label" => __("Jsem firma", 'woocommerce-ares'),
@@ -56,6 +59,38 @@ function custom_override_checkout_fields( $fields ) {
      $fields = array('ares_is_company' => $fields['ares_is_company']) + $fields;
 
      return $fields;
+}
+
+add_action('woocommerce_checkout_update_order_meta', 'woocommerce_ares_checkout_field_update_order_meta');
+
+
+function woocommerce_ares_checkout_field_update_order_meta($order_id)
+{
+    if (!empty($_POST['ares_is_company'])) {
+        update_post_meta($order_id, "is_company", sanitize_text_field($_POST['ares_is_company']));
+    }
+
+    if (!empty($_POST['ares_ico'])) {
+        update_post_meta($order_id, "ico", sanitize_text_field($_POST['ares_ico']));
+    }
+
+    if (!empty($_POST['ares_dic'])) {
+        update_post_meta($order_id, "dic", sanitize_text_field($_POST['ares_dic']));
+    }
+}
+
+add_action( 'woocommerce_admin_order_data_after_shipping_address', 'woocommerce_ares_checkout_field_display_admin_order_meta', 10, 1 );
+
+function woocommerce_ares_checkout_field_display_admin_order_meta($order){
+    if(get_post_meta( $order->get_id(), 'is_company', true )) {
+        echo '<p><strong>'.__('Je firma').' &#10003;</strong></p>';
+    }
+    if(get_post_meta( $order->get_id(), 'ico', true )) {
+        echo '<p><strong>'.__('IČO').':</strong> ' . get_post_meta( $order->get_id(), 'ico', true ) . '</p>';
+    }
+    if(get_post_meta( $order->get_id(), 'dic', true )) {
+        echo '<p><strong>'.__('DIČ').':</strong> ' . get_post_meta( $order->get_id(), 'dic', true ) . '</p>';
+    }
 }
 
 add_action( 'woocommerce_after_checkout_form', 'woocomerce_ares_checkout_form_modifications', 6);
@@ -104,7 +139,7 @@ function woocomerce_ares_checkout_form_modifications() {
         	if($(this).val().length > 7) {
         		$("#ares_fetch_button button").removeAttr("disabled");
         	} else {
-        		$("#ares_fetch_button button").attr("disabled");
+        		$("#ares_fetch_button button").attr("disabled", "disabled");
         	}
         });
    
@@ -148,14 +183,6 @@ function woocomerce_ares_checkout_form_modifications() {
 
 add_action('wp_ajax_nopriv_ares_action', 'woocommerce_ares_fill_from_ares');
 add_action('wp_ajax_ares_action', 'woocommerce_ares_fill_from_ares');
-
-// function woocommerce_ares_ajax() {
-    
-
-//     woocommerce_ares_fill_from_ares($ico);
-
-//     exit(); // this is required to return a proper result & exit is faster than die();
-// }
 
 
 function woocommerce_ares_fill_from_ares() {
@@ -204,8 +231,6 @@ function woocommerce_ares_fill_from_ares() {
     }
 
     print json_encode($return);
-
-    // var_dump($return);
 
     exit();
 }
