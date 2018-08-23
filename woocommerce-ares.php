@@ -21,8 +21,34 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'WOOCOMMERCE_ARES_URL', plugin_dir_url( __FILE__ ) );
 define( 'WOOCOMMERCE_ARES_VERSION', "1.0.0" );
 
-add_filter( 'woocommerce_billing_fields' , 'woocommerce_ares_override_checkout_fields' );
+// If Woocommerce is NOT active
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+if ( !is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 
+    add_action( 'admin_init', 'woocommerce_ares_plugin_deactivate' );
+    add_action( 'admin_notices', 'woocommerce_ares_plugin_admin_notice' );
+
+    // Deactivate the Child Plugin
+    function woocommerce_ares_plugin_deactivate() {
+        deactivate_plugins( plugin_basename( __FILE__ ) );
+    }
+
+    // Throw an Alert to tell the Admin why it didn't activate
+    function woocommerce_ares_plugin_admin_notice() {
+        $dpa_child_plugin = __( 'WooCommerce ARES', 'mswpec' );
+        $dpa_parent_plugin = __( 'WooCommerce', 'mswpec' );
+
+        echo '<div class="notice notice-warning is-dismissible"><p>'
+            . sprintf( __( '%1$s vyžaduje %2$s. Nainstalujte/aktivujte prosím nejprve %2$s a poté %1$s. Tento plugin byl deaktivován.', 'woocommerce-ares' ), '<strong>' . esc_html( $dpa_child_plugin ) . '</strong>', '<strong>' . esc_html( $dpa_parent_plugin ) . '</strong>' )
+            . '</p></div>';
+
+        if ( isset( $_GET['activate'] ) ) {
+            unset( $_GET['activate'] );
+        }
+    }
+}
+
+add_filter( 'woocommerce_billing_fields' , 'woocommerce_ares_override_checkout_fields' );
 
 function woocommerce_ares_override_checkout_fields( $fields ) {
 	$fields["ares_is_company"] = [
