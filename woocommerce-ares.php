@@ -6,7 +6,7 @@
  Text Domain:       woocommerce-ares
  Domain Path:       /languages
  Description:       Přidává do WooCommerce pokladny údaje pro firemní zákazníky a umožňuje natažení informací podle IČO.
- Version:           1.0.0
+ Version:           1.0.1
  License:           GPLv3
  License URI:       http://www.gnu.org/licenses/gpl-3.0.html
  License:           GNU General Public License v3.0
@@ -19,7 +19,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 define( 'WOOCOMMERCE_ARES_URL', plugin_dir_url( __FILE__ ) );
-define( 'WOOCOMMERCE_ARES_VERSION', "1.0.0" );
+define( 'WOOCOMMERCE_ARES_VERSION', "1.0.1" );
 
 // If Woocommerce is NOT active
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -136,8 +136,8 @@ function woocomerce_ares_checkout_form_modifications() {
 		} else {
 			$('#ares_ico_field').hide();
 			$('#ares_dic_field').hide();
-			$('#ares_ico input').val('');   
-			$('#ares_dic input').val('');   
+			$('#ares_ico').val('');   
+			$('#ares_dic').val('');   
 
 			$('#billing_company_field').hide();
 			$('#ares_fetch_button').hide();
@@ -153,8 +153,8 @@ function woocomerce_ares_checkout_form_modifications() {
             } else {
                 $('#ares_ico_field').hide();
                 $('#ares_dic_field').hide();
-                $('#ares_ico input').val(''); 
-                $('#ares_dic input').val(''); 
+                $('#ares_ico').val(''); 
+                $('#ares_dic').val(''); 
 
                 $('#billing_company_field').hide();  
                 $('#ares_fetch_button').hide();  
