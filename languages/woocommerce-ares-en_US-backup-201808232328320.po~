@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce ARES\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-23 23:21+0000\n"
+"PO-Revision-Date: 2018-08-23 23:24+0000\n"
+"Last-Translator: Radovan Šejvl <milan.svehla@gmail.com>\n"
+"Language-Team: \n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: woocommerce-ares.php:42
+#, php-format
+msgid ""
+"%1$s vyžaduje %2$s. Nainstalujte/aktivujte prosím nejprve %2$s a poté %1$s. "
+"Tento plugin byl deaktivován."
+msgstr ""
+
+#: woocommerce-ares.php:252
+msgid "ARES is not responding"
+msgstr ""
+
+#: woocommerce-ares.php:69
+msgid "DIČ"
+msgstr ""
+
+#: woocommerce-ares.php:248
+msgid "Entity doesn't exist in ARES."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://milansvehla.com"
+msgstr ""
+
+#: woocommerce-ares.php:62
+msgid "IČO"
+msgstr ""
+
+#: woocommerce-ares.php:56
+msgid "Jsem firma"
+msgstr ""
+
+#. Author of the plugin
+msgid "Milan Švehla"
+msgstr ""
+
+#: woocommerce-ares.php:128
+msgid "Načíst data podle IČO"
+msgstr ""
+
+#: woocommerce-ares.php:76
+msgid "Název firmy"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Přidává do WooCommerce pokladny údaje pro firemní zákazníky a umožňuje "
+"natažení informací podle IČO."
+msgstr ""
+
+#. Name of the plugin
+msgid "WooCommerce ARES"
+msgstr ""
+
+#: woocommerce-ares.php:256
+msgid "WP ERROR, can't connect."
+msgstr ""
