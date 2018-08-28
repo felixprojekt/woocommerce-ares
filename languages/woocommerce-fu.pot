@@ -59,8 +59,7 @@ msgstr ""
 
 #. Description of the plugin
 msgid ""
-"Přidává do WooCommerce pokladny údaje pro firemní zákazníky a umožňuje "
-"natažení informací podle IČO."
+"Adds custom fields for the company costumers to the WooCommerce checkout and allows Czech companies to fill company credentials from the API."
 msgstr ""
 
 #. Name of the plugin

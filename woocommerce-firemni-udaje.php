@@ -5,7 +5,7 @@
  Author URI:        https://milansvehla.com
  Text Domain:       woocommerce-fu
  Domain Path:       /languages
- Description:       Přidává do WooCommerce pokladny údaje pro firemní zákazníky a umožňuje natažení informací podle IČO.
+ Description:       Adds custom fields for the company costumers to the WooCommerce checkout and allows Czech companies to fill company credentials from the API.
  Version:           1.0.1
  License:           GPLv3
  License URI:       http://www.gnu.org/licenses/gpl-3.0.html

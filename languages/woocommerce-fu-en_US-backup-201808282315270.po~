@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: WooCommerce Firemní údaje\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-28 22:53+0000\n"
-"PO-Revision-Date: 2018-08-28 22:54+0000\n"
+"PO-Revision-Date: 2018-08-28 22:56+0000\n"
 "Last-Translator: Radovan Šejvl <milan.svehla@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: English (United States)\n"
 "Language: en_US\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
@@ -19,53 +19,57 @@ msgid ""
 "%1$s vyžaduje %2$s. Nainstalujte/aktivujte prosím nejprve %2$s a poté %1$s. "
 "Tento plugin byl deaktivován."
 msgstr ""
+"%1$s requires %2$s. Activate %2$s first and then %1$s. This plugin has been "
+"deactivated."
 
 #: woocommerce-firemni-udaje.php:252
 msgid "ARES is not responding"
-msgstr ""
+msgstr "ARES is not responding"
 
 #: woocommerce-firemni-udaje.php:69
 msgid "DIČ"
-msgstr ""
+msgstr "VAT ID"
 
 #: woocommerce-firemni-udaje.php:248
 msgid "Entity doesn't exist in ARES."
-msgstr ""
+msgstr "Entity doesn't exist in ARES."
 
 #. Author URI of the plugin
 msgid "https://milansvehla.com"
-msgstr ""
+msgstr "https://milansvehla.com"
 
 #: woocommerce-firemni-udaje.php:62
 msgid "IČO"
-msgstr ""
+msgstr "IN"
 
 #: woocommerce-firemni-udaje.php:56
 msgid "Jsem firma"
-msgstr ""
+msgstr "I am buying as a company"
 
 #. Author of the plugin
 msgid "Milan Švehla"
-msgstr ""
+msgstr "Milan Švehla"
 
 #: woocommerce-firemni-udaje.php:128
 msgid "Načíst data podle IČO"
-msgstr ""
+msgstr "Fetch company credentials"
 
 #: woocommerce-firemni-udaje.php:76
 msgid "Název firmy"
-msgstr ""
+msgstr "Company Name"
 
 #. Description of the plugin
 msgid ""
 "Přidává do WooCommerce pokladny údaje pro firemní zákazníky a umožňuje "
 "natažení informací podle IČO."
 msgstr ""
+"Adds custom fields for the company costumers to the WooCommerce checkout and "
+"allows Czech companies to fill company credentials from the API."
 
 #. Name of the plugin
 msgid "WooCommerce Firemní údaje"
-msgstr ""
+msgstr "WooCommerce Firemní údaje"
 
 #: woocommerce-firemni-udaje.php:256
 msgid "WP ERROR, can't connect."
-msgstr ""
+msgstr "WP ERROR, can't connect."

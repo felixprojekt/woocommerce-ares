@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: WooCommerce Firemní údaje\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-28 22:53+0000\n"
-"PO-Revision-Date: 2018-08-28 22:56+0000\n"
+"PO-Revision-Date: 2018-08-28 22:57+0000\n"
 "Last-Translator: Radovan Šejvl <milan.svehla@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Czech\n"
 "Language: cs_CZ\n"
 "Plural-Forms: nplurals=3; plural=( n == 1 ) ? 0 : ( n >= 2 && n <= 4 ) ? 1 : "
 "2;\n"
@@ -20,53 +20,57 @@ msgid ""
 "%1$s vyžaduje %2$s. Nainstalujte/aktivujte prosím nejprve %2$s a poté %1$s. "
 "Tento plugin byl deaktivován."
 msgstr ""
+"%1$s vyžaduje %2$s. Nainstalujte/aktivujte prosím nejprve %2$s a poté %1$s. "
+"Tento plugin byl deaktivován."
 
 #: woocommerce-firemni-udaje.php:252
 msgid "ARES is not responding"
-msgstr ""
+msgstr "ARES neodpovídá"
 
 #: woocommerce-firemni-udaje.php:69
 msgid "DIČ"
-msgstr ""
+msgstr "DIČ"
 
 #: woocommerce-firemni-udaje.php:248
 msgid "Entity doesn't exist in ARES."
-msgstr ""
+msgstr "Tento objekt v ARESu neexistuje."
 
 #. Author URI of the plugin
 msgid "https://milansvehla.com"
-msgstr ""
+msgstr "https://milansvehla.com"
 
 #: woocommerce-firemni-udaje.php:62
 msgid "IČO"
-msgstr ""
+msgstr "IČO"
 
 #: woocommerce-firemni-udaje.php:56
 msgid "Jsem firma"
-msgstr ""
+msgstr "Jsem firma"
 
 #. Author of the plugin
 msgid "Milan Švehla"
-msgstr ""
+msgstr "Milan Švehla"
 
 #: woocommerce-firemni-udaje.php:128
 msgid "Načíst data podle IČO"
-msgstr ""
+msgstr "Načíst data podle IČO"
 
 #: woocommerce-firemni-udaje.php:76
 msgid "Název firmy"
-msgstr ""
+msgstr "Název firmy"
 
 #. Description of the plugin
 msgid ""
 "Přidává do WooCommerce pokladny údaje pro firemní zákazníky a umožňuje "
 "natažení informací podle IČO."
 msgstr ""
+"Přidává do WooCommerce pokladny údaje pro firemní zákazníky a umožňuje "
+"natažení informací podle IČO."
 
 #. Name of the plugin
 msgid "WooCommerce Firemní údaje"
-msgstr ""
+msgstr "WooCommerce Firemní údaje"
 
 #: woocommerce-firemni-udaje.php:256
 msgid "WP ERROR, can't connect."
-msgstr ""
+msgstr "WP ERROR, nelze se připojit."
