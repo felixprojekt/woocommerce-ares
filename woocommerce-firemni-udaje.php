@@ -1,9 +1,9 @@
 <?php
 /*
- Plugin Name:       WooCommerce ARES
+ Plugin Name:       WooCommerce Firemní údaje
  Author:            Milan Švehla
  Author URI:        https://milansvehla.com
- Text Domain:       woocommerce-ares
+ Text Domain:       woocommerce-fu
  Domain Path:       /languages
  Description:       Přidává do WooCommerce pokladny údaje pro firemní zákazníky a umožňuje natažení informací podle IČO.
  Version:           1.0.1
@@ -18,28 +18,28 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'WOOCOMMERCE_ARES_URL', plugin_dir_url( __FILE__ ) );
-define( 'WOOCOMMERCE_ARES_VERSION', "1.0.1" );
+define( 'WOOCOMMERCE_FU_URL', plugin_dir_url( __FILE__ ) );
+define( 'WOOCOMMERCE_FU_VERSION', "1.0.1" );
 
 // If Woocommerce is NOT active
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 if ( !is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 
-    add_action( 'admin_init', 'woocommerce_ares_plugin_deactivate' );
-    add_action( 'admin_notices', 'woocommerce_ares_plugin_admin_notice' );
+    add_action( 'admin_init', 'woocommerce_fu_plugin_deactivate' );
+    add_action( 'admin_notices', 'woocommerce_fu_plugin_admin_notice' );
 
     // Deactivate the Child Plugin
-    function woocommerce_ares_plugin_deactivate() {
+    function woocommerce_fu_plugin_deactivate() {
         deactivate_plugins( plugin_basename( __FILE__ ) );
     }
 
     // Throw an Alert to tell the Admin why it didn't activate
-    function woocommerce_ares_plugin_admin_notice() {
-        $dpa_child_plugin = __( 'WooCommerce ARES', 'mswpec' );
+    function woocommerce_fu_plugin_admin_notice() {
+        $dpa_child_plugin = __( 'WooCommerce Firemní údaje', 'mswpec' );
         $dpa_parent_plugin = __( 'WooCommerce', 'mswpec' );
 
         echo '<div class="notice notice-warning is-dismissible"><p>'
-            . sprintf( __( '%1$s vyžaduje %2$s. Nainstalujte/aktivujte prosím nejprve %2$s a poté %1$s. Tento plugin byl deaktivován.', 'woocommerce-ares' ), '<strong>' . esc_html( $dpa_child_plugin ) . '</strong>', '<strong>' . esc_html( $dpa_parent_plugin ) . '</strong>' )
+            . sprintf( __( '%1$s vyžaduje %2$s. Nainstalujte/aktivujte prosím nejprve %2$s a poté %1$s. Tento plugin byl deaktivován.', 'woocommerce-fu' ), '<strong>' . esc_html( $dpa_child_plugin ) . '</strong>', '<strong>' . esc_html( $dpa_parent_plugin ) . '</strong>' )
             . '</p></div>';
 
         if ( isset( $_GET['activate'] ) ) {
@@ -48,32 +48,32 @@ if ( !is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
     }
 }
 
-add_filter( 'woocommerce_billing_fields' , 'woocommerce_ares_override_checkout_fields' );
+add_filter( 'woocommerce_billing_fields' , 'woocommerce_fu_override_checkout_fields' );
 
-function woocommerce_ares_override_checkout_fields( $fields ) {
+function woocommerce_fu_override_checkout_fields( $fields ) {
 	$fields["ares_is_company"] = [
      	"type" => "checkbox",
-     	"label" => __("Jsem firma", 'woocommerce-ares'),
+     	"label" => __("Jsem firma", 'woocommerce-fu'),
      	"class" => ["ares-is-company-trigger"],
      	"clear" => true,
     ];
 
     $fields['ares_ico'] = [
-        'label' => __('IČO', 'woocommerce-ares'),
+        'label' => __('IČO', 'woocommerce-fu'),
     	'required' => false,
     	'class'	=> ["form-row-first"],
     	'clear'	=> true,
     ];
 
     $fields['ares_dic'] = [
-        'label' => __('DIČ', 'woocommerce-ares'),
+        'label' => __('DIČ', 'woocommerce-fu'),
     	'required' => false,
     	'class'	=> ["form-row-wide"],
     	'clear'	=> true,
     ];
 
     $fields['billing_company'] = [
-    	'label' => __('Název firmy', 'woocommerce-ares'),
+    	'label' => __('Název firmy', 'woocommerce-fu'),
     	'required' => false,
     	'class' => ["form-row-wide"],
     	'clear' => true,
@@ -87,10 +87,10 @@ function woocommerce_ares_override_checkout_fields( $fields ) {
      return $fields;
 }
 
-add_action('woocommerce_checkout_update_order_meta', 'woocommerce_ares_checkout_field_update_order_meta');
+add_action('woocommerce_checkout_update_order_meta', 'woocommerce_fu_checkout_field_update_order_meta');
 
 
-function woocommerce_ares_checkout_field_update_order_meta($order_id)
+function woocommerce_fu_checkout_field_update_order_meta($order_id)
 {
     if (!empty($_POST['ares_is_company'])) {
         update_post_meta($order_id, "is_company", sanitize_text_field($_POST['ares_is_company']));
@@ -105,9 +105,9 @@ function woocommerce_ares_checkout_field_update_order_meta($order_id)
     }
 }
 
-add_action( 'woocommerce_admin_order_data_after_shipping_address', 'woocommerce_ares_checkout_field_display_admin_order_meta', 10, 1 );
+add_action( 'woocommerce_admin_order_data_after_shipping_address', 'woocommerce_fu_checkout_field_display_admin_order_meta', 10, 1 );
 
-function woocommerce_ares_checkout_field_display_admin_order_meta($order){
+function woocommerce_fu_checkout_field_display_admin_order_meta($order){
     if(get_post_meta( $order->get_id(), 'is_company', true )) {
         echo '<p><strong>'.__('Je firma').' &#10003;</strong></p>';
     }
@@ -119,13 +119,13 @@ function woocommerce_ares_checkout_field_display_admin_order_meta($order){
     }
 }
 
-add_action( 'woocommerce_after_checkout_form', 'woocomerce_ares_checkout_form_modifications', 6);
+add_action( 'woocommerce_after_checkout_form', 'woocomerce_fu_checkout_form_modifications', 6);
 
-function woocomerce_ares_checkout_form_modifications() {
+function woocomerce_fu_checkout_form_modifications() {
 ?>
 <script type="text/javascript">
 	(function($) {
-		$("#ares_ico_field").after("<p class='form-row form-row-last' id='ares_fetch_button'><label>&nbsp;</label><button class='button alt' style='width: 100%' disabled='disabled'><?= _e("Načíst data podle IČO", "woocommerce-ares"); ?></button></p>");
+		$("#ares_ico_field").after("<p class='form-row form-row-last' id='ares_fetch_button'><label>&nbsp;</label><button class='button alt' style='width: 100%' disabled='disabled'><?= _e("Načíst data podle IČO", "woocommerce-fu"); ?></button></p>");
 
 		if($("#ares_is_company").checked) {
 			$('#ares_ico_field').show();
@@ -207,11 +207,11 @@ function woocomerce_ares_checkout_form_modifications() {
 <?php 
 }
 
-add_action('wp_ajax_nopriv_ares_action', 'woocommerce_ares_fill_from_ares');
-add_action('wp_ajax_ares_action', 'woocommerce_ares_fill_from_ares');
+add_action('wp_ajax_nopriv_ares_action', 'woocommerce_fu_fill_from_ares');
+add_action('wp_ajax_ares_action', 'woocommerce_fu_fill_from_ares');
 
 
-function woocommerce_ares_fill_from_ares() {
+function woocommerce_fu_fill_from_ares() {
 	$ico = intval(str_replace(' ', '', $_POST['ico']));
 
 	$url = 'http://wwwinfo.mfcr.cz/cgi-bin/ares/darv_bas.cgi?ico=' . $ico;
@@ -245,15 +245,15 @@ function woocommerce_ares_fill_from_ares() {
                 $return['mesto'] = $data->AA->N->__toString();
 
             } else {
-                $return = array( 'error' => __('Entity doesn\'t exist in ARES.', 'woocommerce-ares') . $ico);
+                $return = array( 'error' => __('Entity doesn\'t exist in ARES.', 'woocommerce-fu') . $ico);
             }
 
         } else {
-            $return = array( 'error' => __('ARES is not responding', 'woocommerce-ares'));
+            $return = array( 'error' => __('ARES is not responding', 'woocommerce-fu'));
         }
         
     } else {
-        $return = array( 'error' => __('WP ERROR, can\'t connect.', 'woocommerce-ares'));
+        $return = array( 'error' => __('WP ERROR, can\'t connect.', 'woocommerce-fu'));
     }
 
     print json_encode($return);

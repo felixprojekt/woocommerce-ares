@@ -1,1 +1,1 @@
-# Plugin WooCommerce ARES
+# Plugin WooCommerce Firemní údaje
