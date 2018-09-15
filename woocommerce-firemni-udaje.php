@@ -92,16 +92,17 @@ add_action('woocommerce_checkout_update_order_meta', 'woocommerce_fu_checkout_fi
 
 function woocommerce_fu_checkout_field_update_order_meta($order_id)
 {
-    if (!empty($_POST['ares_is_company'])) {
-        update_post_meta($order_id, "is_company", sanitize_text_field($_POST['ares_is_company']));
+
+    if (!empty(filter_input(INPUT_POST, 'ares_is_company'))) {
+        update_post_meta($order_id, "is_company", sanitize_text_field(filter_input(INPUT_POST, 'ares_is_company')));
     }
 
-    if (!empty($_POST['ares_ico'])) {
-        update_post_meta($order_id, "ico", sanitize_text_field($_POST['ares_ico']));
+    if (!empty(filter_input(INPUT_POST, 'ares_ico'))) {
+        update_post_meta($order_id, "ico", sanitize_text_field(filter_input(INPUT_POST, 'ares_ico')));
     }
 
-    if (!empty($_POST['ares_dic'])) {
-        update_post_meta($order_id, "dic", sanitize_text_field($_POST['ares_dic']));
+    if (!empty(filter_input(INPUT_POST, 'ares_dic'))) {
+        update_post_meta($order_id, "dic", sanitize_text_field(filter_input(INPUT_POST, 'ares_dic')));
     }
 }
 
@@ -109,13 +110,13 @@ add_action( 'woocommerce_admin_order_data_after_shipping_address', 'woocommerce_
 
 function woocommerce_fu_checkout_field_display_admin_order_meta($order){
     if(get_post_meta( $order->get_id(), 'is_company', true )) {
-        echo '<p><strong>'.__('Je firma').' &#10003;</strong></p>';
+        echo '<p><strong>'.__('Je firma', 'woocommerce-fu').' &#10003;</strong></p>';
     }
     if(get_post_meta( $order->get_id(), 'ico', true )) {
-        echo '<p><strong>'.__('IČO').':</strong> ' . get_post_meta( $order->get_id(), 'ico', true ) . '</p>';
+        echo '<p><strong>' . __('IČO', 'woocommerce-fu') . ':</strong> ' . get_post_meta( $order->get_id(), 'ico', true ) . '</p>';
     }
     if(get_post_meta( $order->get_id(), 'dic', true )) {
-        echo '<p><strong>'.__('DIČ').':</strong> ' . get_post_meta( $order->get_id(), 'dic', true ) . '</p>';
+        echo '<p><strong>' . __('DIČ', 'woocommerce-fu') . ':</strong> ' . get_post_meta( $order->get_id(), 'dic', true ) . '</p>';
     }
 }
 
@@ -187,7 +188,7 @@ function woocomerce_fu_checkout_form_modifications() {
 	    		responseObj = JSON.parse(response);
 
 	    		if(responseObj["error"]) {
-	    			alert("Pro zadané IČO jsme žádná data nenašli.");
+	    			alert("Pro zadané IČO " + $("#ares_ico").val() + " jsme žádná data nenašli.");
 	    		} else {
 	    			$("#billing_company").val(responseObj["spolecnost"]);
 	    			$("#billing_postcode").val(responseObj["psc"]);
@@ -212,7 +213,7 @@ add_action('wp_ajax_ares_action', 'woocommerce_fu_fill_from_ares');
 
 
 function woocommerce_fu_fill_from_ares() {
-	$ico = intval(str_replace(' ', '', $_POST['ico']));
+	$ico = intval(str_replace(' ', '', filter_input(INPUT_POST, 'ico')));
 
 	$url = 'http://wwwinfo.mfcr.cz/cgi-bin/ares/darv_bas.cgi?ico=' . $ico;
     $response = wp_remote_get( $url );
