@@ -211,7 +211,14 @@ function woocomerce_fu_checkout_form_modifications() {
 add_action('wp_ajax_nopriv_ares_action', 'woocommerce_fu_fill_from_ares');
 add_action('wp_ajax_ares_action', 'woocommerce_fu_fill_from_ares');
 
-
+/**
+ * MFCR INFO ARES API
+ * http://wwwinfo.mfcr.cz/ares/ares_xml.html.cz#k3
+ * 
+ * ADDITIONAL CREDITS
+ * https://github.com/svecon/web-utilities/blob/master/Ares/Ares.php
+ * https://kybernaut.cz/pluginy/kybernaut-ic-dic
+ */
 function woocommerce_fu_fill_from_ares() {
 	$ico = intval(str_replace(' ', '', filter_input(INPUT_POST, 'ico')));
 
