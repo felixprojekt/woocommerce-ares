@@ -7,8 +7,6 @@
  Domain Path:       /languages
  Description:       Adds custom fields for the company costumers to the WooCommerce checkout and allows Czech companies to fill company credentials from the API.
  Version:           1.0.1
- License:           GPLv3
- License URI:       http://www.gnu.org/licenses/gpl-3.0.html
  License:           GNU General Public License v3.0
  License URI:       http://www.gnu.org/licenses/gpl-3.0.html
  */
