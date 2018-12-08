@@ -3,7 +3,7 @@ Contributors: felixprojekt
 Tags: woocommerce, checkout, commerce, billing, shipping, adresa, address
 Donate link: https://milansvehla.com
 Requires at least: 4.6
-Tested up to: 4.9.6
+Tested up to: 5.0
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPLv3
